@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Hacking </title>
+    <style>
+        body {
+            
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100vh;
+            background-color: #000;
+            color: #0F0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal {
+            margin: 20px;
+            width: 60%;
+            max-width: 600px;
+            height: 400px;
+            overflow-x: hidden;  /* Hide horizontal scrollbar */
+            overflow-y: auto;   /* Allow vertical scrollbar */
+            background-color: #000;
+            color: #0F0;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        p {
+            margin: 5px 0;
+            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 5s steps(40, end) forwards, blinkCursor 0.7s infinite;
+        }
+
+        .prompt {
+            display: inline-block;
+            width: 20px;
+            margin-right: 5px;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            10% { width: 100%; }
+            30% { width: 100%; }
+            35% { width: 100%; }
+            40% { width: 100%; }
+            60% { width: 100%; }
+            70% { width: 100%; }
+            85% { width: 100%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            0%, 50% { border-right: 2px solid #0F0; }
+            51%, 100% { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal" id="terminal"></div>
+    <audio id="typeSound" src="./type.mp3"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const terminal = document.getElementById('terminal');
+            const typeSound = document.getElementById('typeSound');
+
+            function playTypeSound() {
+                typeSound.play();
+            }
+
+            function stopTypeSound() {
+                typeSound.pause();
+                typeSound.currentTime = 0;
+            }
+
+            function startAnimation() {
+                const textArray = [
+                    'Initiating virtual intrusion...',
+                    'Establishing encrypted connection...',
+                    'Injecting malicious code...',
+                    'Bypassing security protocols...',
+                    'Access granted. Hacking in progress...',
+                    'Compiling hacking scripts...',
+                    'Decrypting confidential data...',
+                    'Executing stealth maneuvers...',
+                    'Hacking complete. Initiating exit sequence...'
+                ];
+
+                textArray.forEach((text, index) => {
+                    setTimeout(() => {
+                        const paragraph = document.createElement('p');
+                        paragraph.innerHTML = `<span class="prompt">&gt;</span>${text}`;
+                        terminal.appendChild(paragraph);
+                        terminal.scrollTop = terminal.scrollHeight;
+
+                        // Play sound when a new line starts
+                        playTypeSound();
+
+                        // Stop sound when the animation for that line is complete
+                        paragraph.addEventListener('animationend', stopTypeSound);
+
+                        if (index === textArray.length - 1) {
+                            setTimeout(() => {
+                                window.location.href = 'nasa.html';
+                            }, 1000);
+                        }
+                    }, 2000 * index);
+                });
+            }
+
+            // Display a message prompting the user to click anywhere to start
+            const startMessage = document.createElement('p');
+            startMessage.innerHTML = 'Click anywhere to start...';
+            terminal.appendChild(startMessage);
+
+            // Start animation when the user clicks
+            document.addEventListener('click', startAnimation);
+        });
+    </script>
+</body>
+</html>

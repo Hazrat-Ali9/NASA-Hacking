@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: black;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .loader-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 9999; 
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+        
+        .loader {
+            border: 8px solid #4CAF50;
+            border-top: 8px solid #555;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            color: #fff; 
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        img {
+            width: 75%;
+            display: block;
+            margin: auto;
+        }
+        h2 {
+            color: #0F0;
+            text-align: center;
+            text-shadow: 2px 2px 4px #00F, -2px -2px 4px #F00;
+            animation: fadeInOut 0.5s infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        // Run the script after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // Simulate completion of hacking after 3000 milliseconds (3 seconds)
+            setTimeout(function() {
+                document.querySelector('.loader-container').style.display = 'none';
+            }, 2000);
+        });
+    </script>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader"></div>
+        <p class="loading-text">Hacking in progress...</p>
+    </div>
+    <img src="./nasa.webp" alt="nasa">
+    <h2>NASA hacked successfully...</h2>
+</body>
+</html>
